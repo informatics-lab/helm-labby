@@ -1,0 +1,20 @@
+telegraf:
+  username: ''
+  password: ''
+  influxhost: ''
+  hostname: 'labby'
+
+opsdroid:
+  version: v0.10.0
+  port: 8080
+  domain: ''
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+
+  environment: []
+
+  configuration: |
+    # opsdroid config

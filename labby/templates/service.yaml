@@ -1,0 +1,10 @@
+kind: Service
+metadata:
+  name: labby
+spec:
+  ports:
+    - port: 80
+      targetPort: {{ .Values.opsdroid.port }}
+      protocol: TCP
+  selector:
+    app: labby

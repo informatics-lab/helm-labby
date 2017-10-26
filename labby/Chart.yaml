@@ -1,0 +1,7 @@
+apiVersion: v1
+name: labby
+version: 0.1.0
+description: A deployment of opsdroid configured to be labby the rat
+maintainers: 
+  - name: Jacob Tomlinson
+    email: jacob.tomlinson@informaticslab.co.uk
