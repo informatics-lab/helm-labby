@@ -31,7 +31,7 @@ data:
 
     [[inputs.httpjson]]
        servers = [
-         "http://labby:80/stats/",
+         "http://opsdroid:80/stats/",
        ]
       method = "GET"
       tag_keys = [
