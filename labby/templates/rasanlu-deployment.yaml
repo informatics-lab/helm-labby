@@ -1,0 +1,39 @@
+{{- if .Values.rasanlu.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rasanlu-{{ .Release.Name }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rasanlu
+    spec:
+      volumes:
+        - name: rasanlu-data
+          persistentVolumeClaim:
+            claimName: rasanlu-data
+      containers:
+        - image: {{ .Values.rasanlu.image }}:{{ .Values.rasanlu.tag }}
+          imagePullPolicy: Always
+          name: rasanlu
+          ports:
+            - containerPort: {{ .Values.rasanlu.port }}
+          env:
+            {{- if .Values.rasanlu.token }}
+            - name: RASA_TOKEN
+              value: {{ .Values.rasanlu.token }}
+            {{- end }}
+          resources:
+            requests:
+              cpu: {{ .Values.rasanlu.resources.requests.cpu }}
+              memory: {{ .Values.rasanlu.resources.requests.memory }}
+          volumeMounts:
+            - mountPath: /app/projects
+              name: rasanlu-data
+              subPath: projects
+            - mountPath: /app/data
+              name: rasanlu-data
+              subPath: data
+{{- end -}}

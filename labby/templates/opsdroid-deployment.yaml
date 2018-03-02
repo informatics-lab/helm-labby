@@ -1,20 +1,20 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: labby-{{ .Release.Name }}
+  name: opsdroid-{{ .Release.Name }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: labby
+        app: opsdroid
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/opsdroid-config.yaml") . | sha256sum }}
     spec:
       containers:
         - image: opsdroid/opsdroid:{{ .Values.opsdroid.version }}
           imagePullPolicy: Always
-          name: labby
+          name: opsdroid
           ports:
             - containerPort: {{ .Values.opsdroid.port }}
           volumeMounts:
@@ -33,7 +33,7 @@ spec:
             - name: {{ .name }}
               valueFrom:
                 secretKeyRef:
-                  name: labby-config
+                  name: opsdroid-config
                   key: {{ .name }}
             {{- end }}
           resources:
@@ -43,4 +43,4 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: labby-config
+            name: opsdroid-config
