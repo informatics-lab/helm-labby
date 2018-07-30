@@ -19,7 +19,7 @@ spec:
             - containerPort: {{ .Values.opsdroid.port }}
           volumeMounts:
             - name: config
-              mountPath: "/root/.opsdroid/configuration.yaml"
+              mountPath: "/root/.config/opsdroid/configuration.yaml"
               subPath: configuration.yaml
               readOnly: false
           livenessProbe:
