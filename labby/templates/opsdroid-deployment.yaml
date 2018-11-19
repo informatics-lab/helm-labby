@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - image: opsdroid/opsdroid:{{ .Values.opsdroid.version }}
-          imagePullPolicy: Always
+          imagePullPolicy: {{ .Values.opsdroid.imagePullPolicy }}
           name: opsdroid
           ports:
             - containerPort: {{ .Values.opsdroid.port }}

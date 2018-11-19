@@ -23,6 +23,7 @@ rasanlu:
 opsdroid:
   version: v0.13.0
   port: 8080
+  imagePullPolicy: Always
 
   resources:
     requests:
